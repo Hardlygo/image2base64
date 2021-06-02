@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "601d330e4b127729b9ca",
-    "url": "https://github.hardly.website/image2base64/css/app.c78e51b6.css"
+    "revision": "e7dafc72dc36360b1cfd",
+    "url": "https://github.hardly.website/image2base64/css/app.99754d05.css"
   },
   {
-    "revision": "eba479a5d654ec051c93",
+    "revision": "a0386dbd569b461408b7",
     "url": "https://github.hardly.website/image2base64/css/chunk-vendors.caacd1e0.css"
   },
   {
@@ -16,16 +16,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://github.hardly.website/image2base64/fonts/element-icons.732389de.ttf"
   },
   {
-    "revision": "1d888bc2ce56c13cb40e44b9955362bc",
+    "revision": "793ab5cb0bf9eccac26c2e5ddf76eb40",
     "url": "https://github.hardly.website/image2base64/index.html"
   },
   {
-    "revision": "601d330e4b127729b9ca",
-    "url": "https://github.hardly.website/image2base64/js/app.8db497fa.js"
+    "revision": "e7dafc72dc36360b1cfd",
+    "url": "https://github.hardly.website/image2base64/js/app.9b65a67d.js"
   },
   {
-    "revision": "eba479a5d654ec051c93",
-    "url": "https://github.hardly.website/image2base64/js/chunk-vendors.7c5e3ac3.js"
+    "revision": "a0386dbd569b461408b7",
+    "url": "https://github.hardly.website/image2base64/js/chunk-vendors.38c5d7b9.js"
   },
   {
     "revision": "1d1c12ee4662a3a0bdb68f27dfe463c2",

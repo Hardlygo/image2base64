@@ -11,13 +11,13 @@
             v-on:paste.native="paste"
           >
           </el-input>
-          <!-- <el-input
-            placeholder="可选"
+          <el-input
+            placeholder="图片描述文字（可选）"
             v-model="markdownImgSate"
             style="margin-top:4%;"
           >
             <template slot="prepend">Alt text</template>
-          </el-input> -->
+          </el-input>
         </div>
         <div class="converter-prompt">所粘贴图片：</div>
         <div
@@ -95,8 +95,8 @@ export default {
   computed: {
     // 为 markdown 语法准备的字符串
     markdownData() {
-      if(!this.base64Data){
-        return ""
+      if (!this.base64Data) {
+        return "";
       }
       return "![" + this.markdownImgSate + "](" + this.base64Data + ")";
     },
@@ -118,7 +118,7 @@ export default {
     // 压缩图片的 base64 长度
     compressBase64Length(base64, callback) {
       let image = new Image(),
-        MAX_HEIGHT = 160;
+        MAX_HEIGHT = 1000;
       // 回调函数赋值给 onload
       image.onload = () => {
         let canvas = "";
@@ -191,6 +191,41 @@ export default {
       };
       reader.readAsDataURL(blob);
     },
+    getBase64(url) {
+      let self = this;
+      let Img = new Image(),
+        dataURL = "";
+      Img.src = url;
+      let p = new Promise(function (resolve, reject) {
+        Img.onload = function () {
+          //要先确保图片完整获取到，这是个异步事件
+          let canvas = document.createElement("canvas"), //创建canvas元素
+            width = Img.width, //确保canvas的尺寸和图片一样
+            height = Img.height;
+          // 默认将长宽设置为图片的原始长宽，这样在长宽不超过最大长度时就不需要再处理
+          let ratio = width / height,
+            maxLength = 1000,
+            newHeight = height,
+            newWidth = width;
+          // 在长宽超过最大长度时，按图片长宽比例等比缩小
+          if (width > maxLength || height > maxLength) {
+            if (width > height) {
+              newWidth = maxLength;
+              newHeight = maxLength / ratio;
+            } else {
+              newWidth = maxLength * ratio;
+              newHeight = maxLength;
+            }
+          }
+          canvas.width = newWidth;
+          canvas.height = newHeight;
+          canvas.getContext("2d").drawImage(Img, 0, 0, newWidth, newHeight); //将图片绘制到canvas中
+          dataURL = canvas.toDataURL("image/jpeg", 0.5); //转换图片为dataURL
+          resolve(dataURL);
+        };
+      });
+      return p;
+    },
     // 复制成功
     onCopy() {
       this.$message({
@@ -200,13 +235,13 @@ export default {
     },
     // 复制失败
     onError(content) {
-      this.$message.error(content||"复制失败");
+      this.$message.error(content || "复制失败");
     },
     copy2markdown() {
       let _this = this;
-      if(!this.markdownData){
-        _this.onError("复制失败,读取内容为空！")
-        return
+      if (!this.markdownData) {
+        _this.onError("复制失败,读取内容为空！");
+        return;
       }
       this.$copyText(this.markdownData).then(
         function (e) {
@@ -223,11 +258,11 @@ export default {
 };
 </script>
 <style>
-.el-slider__bar{
-  background-color: #95e1d3!important;
+.el-slider__bar {
+  background-color: #95e1d3 !important;
 }
-.el-slider__button{
-  border:2px solid #95e1d3!important
+.el-slider__button {
+  border: 2px solid #95e1d3 !important;
 }
 </style>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -302,27 +337,24 @@ body > .el-container {
   color: #77787b;
 }
 
-
 .el-button--young.is-active,
 .el-button--young:active {
-  background: #20B2AA;
-  border-color: #20B2AA;
+  background: #20b2aa;
+  border-color: #20b2aa;
   color: #fff;
 }
 
 .el-button--young:focus,
 .el-button--young:hover {
-  background: #48D1CC;
-  border-color: #48D1CC;
+  background: #48d1cc;
+  border-color: #48d1cc;
   color: #fff;
 }
 
 .el-button--young {
-  color: #FFF;
-  background-color: #20B2AA;
-  border-color: #20B2AA;
+  color: #fff;
+  background-color: #20b2aa;
+  border-color: #20b2aa;
 }
-
-
 </style>
 

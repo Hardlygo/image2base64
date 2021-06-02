@@ -1,24 +1,7 @@
+
 # image2base64
 
-## Project setup
-```
-npm install
-```
+> 因为vscode里面的jupyter的markdown不能直接粘贴剪切板的图片生成markdown代码，所以自己做一个，粘贴好之后一键生成markdown代码，就可以放到vscode的jupyter上面啦
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+follow by
+https://github.com/HongHaiyang/image2base64
